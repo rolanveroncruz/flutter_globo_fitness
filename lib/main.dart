@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:globo_fitness/screens/bmi_screen.dart';
 import 'package:globo_fitness/screens/intro_screen.dart';
 
 void main() {
@@ -14,6 +15,10 @@ class GlobeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blueGrey),
-      home: IntroScreen());
+      routes:{
+        '/':(context)=>IntroScreen(),
+        '/bmi': (context)=>BMIScreen()
+      }, initialRoute: '/',
+      );
   }
 }

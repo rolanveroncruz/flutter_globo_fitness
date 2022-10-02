@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:globo_fitness/screens/intro_screen.dart';
+import 'package:globo_fitness/screens/bmi_screen.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key}) : super(key: key);
@@ -8,16 +10,16 @@ class MenuDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(children:buildMenuItems(context),
-      )
-    );
+        child: ListView(
+      children: buildMenuItems(context),
+    ));
   }
 
   List<Widget> buildMenuItems(BuildContext context) {
     final List<String> menuTitles = [
       'Home',
       'BMI Calculator',
-      'Weaather',
+      'Weather',
       'Training'
     ];
     List<Widget> menuItems = [];
@@ -25,12 +27,24 @@ class MenuDrawer extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.blueGrey),
         child: Text('Globo Fitness',
             style: TextStyle(color: Colors.white, fontSize: 28))));
-    menuTitles.forEach((element) { 
-      menuItems.add(ListTile( 
-        title: Text(element,
-          style: TextStyle(fontSize: 18)),
-          onTap:() => {}));
-    });
+    for (var element in menuTitles){
+      Widget screen = Container();
+      menuItems.add(ListTile(
+          title: Text(element, style: TextStyle(fontSize: 18)),
+          onTap: () {
+            switch (element) {
+              case 'Home':
+                screen = IntroScreen();
+                break;
+              case 'BMI Calculator':
+                screen = BMIScreen();
+                break;
+            }
+            Navigator.of(context).pop();
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => screen));
+          }));
+    }
     return menuItems;
   }
 }
