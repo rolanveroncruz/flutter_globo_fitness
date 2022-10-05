@@ -93,9 +93,9 @@ class _BMIScreenState extends State<BMIScreen> {
     double height = double.tryParse(txtHeight.text) ?? 0;
     double weight = double.tryParse(txtWeight.text) ?? 0;
     if (isMetric) {
-      bmi = (weight! / (height * height));
+      bmi = (weight / (height * height));
     }else{
-      bmi = weight! * 703 /(height*height);
+      bmi = weight * 703 /(height*height);
     }
     setState( (){
       result = 'Your BMI is ${bmi.toStringAsFixed(2)}';
